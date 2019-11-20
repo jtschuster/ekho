@@ -42,9 +42,8 @@ int numcurves = 0;
 int cpsavg = 0;
 double record_time_ms = 0.0;
 long double coeff[DEGREE];
-long double allcurves[ALL_CURVES_LEN][NUMPOINTS];
+long double allcurves[NUMPOINTS];
 long double curvedata[2][COUNT];
-int indexInAllCurves = 0;
 char output_file_name[255];
 char rawpair_file_name[255];
 
@@ -183,7 +182,7 @@ void idle_impl()
 	double timestamp = 0.0;
 	double start;
 	double end;
-	double elapsed, elapsedNano;
+	double elapsed;
 	unsigned char buf[BUFSIZE];
 	int buffered_bytes = 0;
 	double idle_start;
@@ -300,7 +299,7 @@ void idle_impl()
 
 create_curves_with_regression();
 			// Pipe curve output to file
-fwrite(&allcurves[indexInAllCurves], sizeof(long double), NUMPOINTS, surface_outf);
+fwrite(&allcurves, sizeof(long double), NUMPOINTS, surface_outf);
 			// printf("End wrting %d curves\n",numcurves );
 			// printf ("time required %f , timestamp %f \n", record_time_ms,timestamp);
 			if(timestamp > record_time_ms) {
@@ -431,8 +430,8 @@ long double polycurve(long double voltage, long double *coeffs, int degree) {
 }
 //////////////////////////////////////////////
 long double clamp_current(long double current) {
-				return fmin(fmax(current, 0), 0.1f);
-			}
+	return fmin(fmax(current, 0), 0.1f);
+}
 //////////////////////////////////////////////
 void create_curves_with_regression(void)
 {
@@ -441,7 +440,7 @@ void create_curves_with_regression(void)
 
 				// Clear curve first to all zeros
 				for (int j = 0; j < NUMPOINTS - 1; j++) {
-					allcurves[indexInAllCurves][j] = 0;
+					allcurves[j] = 0;
 				}
 
 				// Sort curve data cloud on Voltage
@@ -461,7 +460,7 @@ void create_curves_with_regression(void)
 						firstIndex = j + 1;
 					}
 					if (VOLTAGES[j] > leftmostpoint && VOLTAGES[j] < rightmostpoint) {
-						allcurves[indexInAllCurves][j] = clamp_current(polycurve(VOLTAGES[j], coeff, DEGREE));
+						allcurves[j] = clamp_current(polycurve(VOLTAGES[j], coeff, DEGREE));
 					}
 					if (VOLTAGES[j] > rightmostpoint) {
 						lastIndex = j;
@@ -472,26 +471,26 @@ void create_curves_with_regression(void)
 				// Draw a line through left part past point cloud, using points already
 				// in curve
 				memcpy(tox, &VOLTAGES[firstIndex+1], sizeof(long double) * 3);
-				memcpy(toy, &allcurves[indexInAllCurves][firstIndex+1], sizeof(long double) * 3);
+				memcpy(toy, &allcurves[firstIndex+1], sizeof(long double) * 3);
 				polynomialfit(3, 2, tox, toy, coeff);
 				for (int j = 0; j < firstIndex; j++) {
-					allcurves[indexInAllCurves][j] = clamp_current(polycurve(VOLTAGES[j], coeff, 2));
+					allcurves[j] = clamp_current(polycurve(VOLTAGES[j], coeff, 2));
 				}
 
 				// Draw a line through right part past point cloud, using points already
 				// in curve
 				// 2-degree since it will most likely curve into zero
 				memcpy(tox, &VOLTAGES[lastIndex - 3], sizeof(long double) * 3);
-				memcpy(toy, &allcurves[indexInAllCurves][lastIndex - 3],sizeof(long double) * 3);
+				memcpy(toy, &allcurves[lastIndex - 3],sizeof(long double) * 3);
 				polynomialfit(3, 2, tox, toy, coeff);
 
 				// We only want a negative slope between two points, if not negative
 				// then render it at zero height
 				for (int j = lastIndex; j < NUMPOINTS - 1; j++) {
 					if (coeff[1] < 0) {
-						allcurves[indexInAllCurves][j] = clamp_current(polycurve(VOLTAGES[j], coeff, 2));
+						allcurves[j] = clamp_current(polycurve(VOLTAGES[j], coeff, 2));
 					} else {
-						allcurves[indexInAllCurves][j] = 0;
+						allcurves[j] = 0;
 					}
 				}
 			}//end create_curves_with_regression()
