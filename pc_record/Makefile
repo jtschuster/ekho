@@ -1,0 +1,2 @@
+record: 
+    cd record && $(MAKE)
