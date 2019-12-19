@@ -65,7 +65,7 @@ long double interpolate(int Vindex, double timestamp)
                 ratio = (emulated_timestamps[i] - timestamp) / (emulated_timestamps[i] - emulated_timestamps[i - 1]);
                 ret = emulated_curves[i - 1][Vindex] + (emulated_curves[i][Vindex] - emulated_curves[i - 1][Vindex]) * ratio;
             }
-            fprintf(stderr, "Interpolated value at %lf time, %Lf volts: %Lf amps\n", timestamp, VOLTAGES[Vindex], ret);
+            // fprintf(stderr, "Interpolated value at %lf time, %Lf volts: %Lf amps\n", timestamp, VOLTAGES[Vindex], ret);
             return ret;
         }
         if (emulated_timestamps[i] == -1.0)
@@ -79,11 +79,47 @@ long double interpolate(int Vindex, double timestamp)
 }
 
 //Given timestamp and curve, finds mse
-long double interpolated_error(double timestamp, long double *curve)
+long double interpolated_mse(double timestamp, long double * curve)
 {
     // long double curve_diff[NUMPOINTS];
     long double diff;
     long double mse = 0.0;
+    int significant_points = 1;
+    long double actual;
+    for (int i = 0; i < NUMPOINTS; i++)
+    {
+        actual = interpolate(i, timestamp);
+        diff = actual - curve[i];
+        if (diff < 0)
+        {
+            diff = -diff;
+        }
+        if ((diff < EPS && actual < EPS) || actual == 0.0) { // disregard the values that are effectively 0
+            // printf("too small\n");
+            continue;
+        }
+        // percent_error = diff / actual;
+        significant_points++;
+        // printf("Diff is %Lf\n", diff);
+        mse += diff * diff;
+        // mean_percent_error += percent_error;
+    }
+    if (significant_points == 0)
+    {
+        significant_points = 1; // avoid inf errors
+    }
+    mse = mse / significant_points;
+    // mean_percent_error = mean_percent_error / significant_points;
+    printf("Mean squared error with %d sig points: %Lf\n", significant_points, mse);
+    // printf("\n\nThis timestamp total mse with %d sig points: %Lf\n\n", significant_points, mean_percent_error);
+    // return mean_percent_error;
+    return mse;
+}
+//Given timestamp and curve, finds percent difference
+long double interpolated_percent_error(double timestamp, long double * curve)
+{
+    // long double curve_diff[NUMPOINTS];
+    long double diff;
     int significant_points = 1;
     long double actual, percent_error;
     long double mean_percent_error = 0.0;
@@ -96,22 +132,60 @@ long double interpolated_error(double timestamp, long double *curve)
             diff = -diff;
         }
         if ((diff < EPS && actual < EPS) || actual == 0.0) { // disregard the values that are effectively 0
-            printf("too small\n");
+            // printf("too small\n");
             continue;
         }
         percent_error = diff / actual;
         significant_points++;
-        printf("Diff is %Lf\n", diff);
-        mse += diff; //* diff * (1 / NUMPOINTS);
+        // printf("Diff is %Lf\n", diff);
+        // mse += diff * diff;
         mean_percent_error += percent_error;
     }
     if (significant_points == 0)
     {
         significant_points = 1; // avoid inf errors
     }
-    mse = mse / significant_points;
+    // mse = mse / significant_points;
     mean_percent_error = mean_percent_error / significant_points;
-    printf("\n\nThis timestamp total mse with %d sig points: %Lf\n\n", significant_points, mse);
+    // printf("\n\nThis timestamp total mse with %d sig points: %Lf\n\n", significant_points, mse);
+    printf("Mean percent error with %d sig points: %Lf\n", significant_points, mean_percent_error);
+    return mean_percent_error;
+    // return mse;
+}
+
+//Given timestamp and curve, finds ave error
+long double interpolated_ave_error(double timestamp, long double * curve)
+{
+    // long double curve_diff[NUMPOINTS];
+    long double diff;
+    long double mse = 0.0;
+    int significant_points = 1;
+    long double actual;
+    for (int i = 0; i < NUMPOINTS; i++)
+    {
+        actual = interpolate(i, timestamp);
+        diff = actual - curve[i];
+        if (diff < 0)
+        {
+            diff = -diff;
+        }
+        if ((diff < EPS && actual < EPS) || actual == 0.0) { // disregard the values that are effectively 0
+            // printf("too small\n");
+            continue;
+        }
+        // percent_error = diff / actual;
+        significant_points++;
+        // printf("Diff is %Lf\n", diff);
+        mse += diff;
+        // mean_percent_error += percent_error;
+    }
+    if (significant_points == 0)
+    {
+        significant_points = 1; // avoid inf errors
+    }
+    mse = mse / significant_points;
+    // mean_percent_error = mean_percent_error / significant_points;
+    printf("Average error with %d sig points: %Lf\n", significant_points, mse);
     // printf("\n\nThis timestamp total mse with %d sig points: %Lf\n\n", significant_points, mean_percent_error);
     // return mean_percent_error;
     return mse;
@@ -160,7 +234,9 @@ int main(int argc, char **argv)
             emulation_length = load_emulated_curve(emulated_file);
             fclose(emulated_file);
             double record_elapsed = 0.0;
-            long double total_error = 0.0;
+            long double total_mse = 0.0;
+            long double total_percent_error = 0.0;
+            long double total_ave_error = 0.0;
             int k = 0;
             printf("recorded_elapsed : %lf\nemulation_length: %lf\n", record_elapsed, emulation_length);
             // fclose(recorded_file);
@@ -170,22 +246,27 @@ int main(int argc, char **argv)
             {
                 n = fread(&timestamp, sizeof(double), 1, recorded_file);
                 n = fread(&curvepoints, sizeof(long double), NUMPOINTS, recorded_file);
-                fprintf(stderr, "n = %d\n", n);
-                printf("timestamp: %lf\ntimestamp - first: %lf\n", timestamp, timestamp - first_timestamp);
-                // fclose(recorded_file);
-                // exit(0);
-                if (timestamp - first_timestamp >= emulation_length)
+                // fprintf(stderr, "n = %d\n", n);
+                if (timestamp - first_timestamp >= emulation_length || n < 1)
                 {
                     break;
                 }
-                total_error += interpolated_error(timestamp - first_timestamp, curvepoints);
-                printf("running total of error: %Lf\n", total_error);
-                fprintf(stderr, "Made it out of interpolated_error\ntimestamp: %lf\nfirst_timestamp: %lf\n", timestamp, first_timestamp);
+                printf("\n\nTimestamp: %lf\ntimestamp - first: %lf\n", timestamp, timestamp - first_timestamp);
+                // fclose(recorded_file);
+                // exit(0);
+                
+                total_mse += interpolated_mse(timestamp - first_timestamp, curvepoints);
+                total_percent_error += interpolated_percent_error(timestamp - first_timestamp, curvepoints);
+                total_ave_error += interpolated_ave_error(timestamp - first_timestamp, curvepoints);
+                printf("running total of errors:\nMSE: %Lf\nPercentErr: %Lf\nAveErr: %Lf\n", total_mse, total_percent_error, total_ave_error);
+                // fprintf(stderr, "Made it out of interpolated_error\ntimestamp: %lf\nfirst_timestamp: %lf\n", timestamp, first_timestamp);
                 k += 1;
             }
             fclose(recorded_file);
-            long double MSE = total_error / k;
-            fprintf(stderr, "Average Mean Squared Error for every timestamp: %.17Lf\n\n", MSE); // actually just mean error right now
+            long double MSE = total_mse / k;
+            long double PE =  total_percent_error / k;
+            long double AE = total_ave_error / k;
+            fprintf(stderr, "\n\nAverage errors:\nMSE:\t%.17Lf\nPercent error:\t%.17Lf\nAverage error:\t%.17Lf\n\n", MSE, PE,AE); // actually just mean error right now
             exit(0);
         }
     }

@@ -2,3 +2,4 @@
 *.gnu
 *.raw
 *.ivs
+*.dSYM
