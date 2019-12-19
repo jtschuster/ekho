@@ -1,7 +1,0 @@
-make allcurves 1d, make more readable
-push and make note of what it does
-remove ivs out from record
-generate ivs and gnu from raw using plot_surface
-make gnuplot include the raw data as well as the regression
-gnuplot it
-open gnuplot

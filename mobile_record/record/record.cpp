@@ -77,11 +77,11 @@ FILE *surface_outf , *rawpair_file , *rawData_file;
 
 void idle_impl()
 {
-	  int n=0;
-		int points = 0;
-		double start_timestamp ;
-    double   End_timestamp;
-		double  recordtime =0.0;
+	int n=0;
+	int points = 0;
+	double start_timestamp ;
+	double End_timestamp;
+	double recordtime =0.0;
 
 
     //  printf("inside idle_impl\n");
@@ -109,15 +109,15 @@ void idle_impl()
 												+ ((uint32_t)(buft[1]) << 8)
 												+ ((uint32_t)(buft[0]));
 
-		//	printf ("End_timestamp : %f \n", End_timestamp);
+			//	printf ("End_timestamp : %f \n", End_timestamp);
 			}
 
-				n = fread(&buf, sizeof(unsigned char),10, rawData_file);
-        totalN +=n;
+			n = fread(&buf, sizeof(unsigned char),10, rawData_file);
+            totalN +=n;
 			if (n<10) {
-				  // printf("End wrting %d curves\n",numcurves );
-					 printf("=======\n %d IV-curves are recorded for %lf seconds.\n=======\n",numcurves, recordtime);
-           // printf("total bytes %d \n",totalN );
+				  	// printf("End wrting %d curves\n",numcurves );
+					printf("=======\n %d IV-curves are recorded for %lf seconds.\n=======\n",numcurves, recordtime);
+           			// printf("total bytes %d \n",totalN );
 					break;
 			}
 
@@ -131,49 +131,50 @@ void idle_impl()
 			//printf("%d , %d, %d, %d, %d \n", raw_current_1, raw_current_2, raw_current_3,raw_voltage, raw_vref);
 
 			//get the higher amplified unsaturated current and its gain
-     	struct current Current= get_current(raw_current_1,raw_current_2,raw_current_3);
+			struct current Current= get_current(raw_current_1,raw_current_2,raw_current_3);
 
-      // 1- convert ADC readings to voltages by multiplying by 3.3/2^12
-		  long double current = Current.raw_value * ADC_to_Voltage;
+			// 1- convert ADC readings to voltages by multiplying by 3.3/2^12
+			long double current = Current.raw_value * ADC_to_Voltage;
 			long double voltage   = raw_voltage *  ADC_to_Voltage;
-		  long double vref      = raw_vref * ADC_to_Voltage;
+			long double vref      = raw_vref * ADC_to_Voltage;
 
 			///////////////////////////////////////////////
 			// 2- subtract vref from  current value and  voltage
 			current = current - vref;
-		  voltage = vref - (voltage/Voltage_gain);
-    	// 3- get current values (I)by applying Ohm's law I= V/R , where R = 10 Ohms on Ekho board and V is the voltage values stored in current variable
+			voltage = vref - (voltage/Voltage_gain);
+			// 3- get current values (I)by applying Ohm's law I= V/R , where R = 10 Ohms on Ekho board and V is the voltage values stored in current variable
 			current = current /SENSE_Resistor;
 
 			voltage = voltage * 51.0L  ; // 51 voltage division factor on Ekho board, 51 = (R1+R2)/R1 = (200K+10M)/200K = (200000.0+10000000.0))/200000.0
 
-    	// 4- divide current by the current gain value
-      current = current / Current.gain;
+			// 4- divide current by the current gain value
+			current = current / Current.gain;
 
 			// check for edge cases
-     	if (voltage<0){
-			 	voltage=0;
-		 	}
-      if (current<0){
-			 	current=0;
-		 	}
-       // store the values in curvedata array
+			if (voltage<0){
+				voltage=0;
+			}
+			if (current<0){
+				current=0;
+			}
+			// store the values in curvedata array
 		 	curvedata[0][points] = voltage;
 		 	curvedata[1][points] = current;
 
 
-      // printf("points %d\n", points);
+      		// printf("points %d\n", points);
 		 	// printf("(%Lf,%Lf)\n",current,voltage);
-        points++;
+        	points++;
 
 		 	if (points == COUNT)
 			{
-        recordtime += (End_timestamp-start_timestamp)*0.001;
+                recordtime += (End_timestamp-start_timestamp)*0.001;
 			 	 //	printf ("start_timestamp : %f \n", start_timestamp);
 					//	printf ("End_timestamp : %f \n", End_timestamp);
+				start_timestamp = start_timestamp * 0.001;
 			 	fwrite(&start_timestamp, sizeof(double), 1, surface_outf);
 			 	fwrite(&start_timestamp, sizeof(double), 1, rawpair_file);
-			  //printf ("after writing time stampe\n");
+			    //printf ("after writing time stampe\n");
 				// Write to file all x points (voltages)
 				fwrite(&curvedata[0], sizeof(long double), COUNT, rawpair_file);
 				// Write to file all y points (currents)
@@ -181,12 +182,13 @@ void idle_impl()
 			 	create_curves_with_regression();
 			 	// Pipe curve output to file
 			 	fwrite(&allcurves[indexInAllCurves], sizeof(long double), NUMPOINTS, surface_outf);
+				start_timestamp = start_timestamp * 1000;
 
-         //printf("End wrting %d curves\n",numcurves );
-					// Prepare for next curve
+         		//printf("End wrting %d curves\n",numcurves );
+				// Prepare for next curve
 			 	points = 0;
 			 	numcurves++;
-        //	printf("\n");
+        		//	printf("\n");
 				//	printf ("scale factor after wrting to file : %u / %u\n", sTimebaseInfo.numer, sTimebaseInfo.denom);
 
 
@@ -376,20 +378,20 @@ void create_curves_with_regression(void)
 int main ( int argc, char** argv )   // Create Main Function For Bringing It All Together
 {
 
-	if (argc < 2) {
+	if (argc < 3) {
 		fprintf(stderr, "This program records IV-surfaces with no rendering.\n");
-		fprintf(stderr, "	Usage:   ./record <surface_file_name> <rawData_file_name>\n");
+		fprintf(stderr, "	Usage:   ./record <output_file_name> <rawData_file_name>\n");
 		exit(0);
 	}
-	if (argc > 1) {
+	if (argc > 2) {
 		strcpy(output_file_name, argv[1]);
 		strcpy(rawpair_file_name, argv[1]);
 		strcat (output_file_name,".ivs");
-	   strcat (rawpair_file_name,".raw");
+	    strcat (rawpair_file_name,".raw");
 	}
 	printf("Saving to %s and %s..\n", output_file_name,rawpair_file_name );
 	surface_outf = fopen(output_file_name, "w");
-  rawpair_file = fopen(rawpair_file_name, "w");
+    rawpair_file = fopen(rawpair_file_name, "w");
 	rawData_file= fopen(argv[2], "r");
 
 	idle_impl();
