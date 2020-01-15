@@ -18,7 +18,7 @@ int pointCount = 0 ;
 int led = 13;
 byte rawData[10];
 unsigned long EndTimetMillis;
-const long RecordTime = 20000; //10ms, 1800000= 30min, 60000 = 1 min , 600000= 10 mins// change to any valaue that you want in milisecond
+const long RecordTime = 10000; //10ms, 1800000= 30min, 60000 = 1 min , 600000= 10 mins// change to any valaue that you want in milisecond
  unsigned long StartTimetMillis;
  int StartFlag = 1;
  File dataFile;
