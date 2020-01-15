@@ -7,7 +7,8 @@ Folders:
     - verification: code to compare the difference between IV surfaces. Only useful if a ekho record is used as the load to an ekho emulate. 
 
 Requirements:
-    - GSL (GNU Scientific Library). This may need to be installed using Homebrew, even on Linux machines. 
+    - GSL (GNU Scientific Library). This may need to be installed using Homebrew, even on Linux machines. $ brew install gsl
+    - OpenGL Utility Kit (GLUT). $ brew install freeglut
     - g++ and gcc
     - Arduino and Teensyduino
     - Make

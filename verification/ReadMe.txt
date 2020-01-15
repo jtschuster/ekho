@@ -1,4 +1,4 @@
-The mse program compares a recorded surface to an emulated surface. This is only for use when a recorder is set up as the load to an emulator. This assumes the recording is longer than the emulation and the emulation begins after the recording has started.
+The mse program compares a recorded surface to an emulated surface. This is only for use when a recorder is set up as the load to an emulator. This assumes the recording is longer than the emulation and the emulation begins after the recording has started. 
 
 Usage:
     ./mse <emulated .ivs file> <recorded .ivs file> <time emulation begins>

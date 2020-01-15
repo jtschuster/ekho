@@ -21,11 +21,10 @@
 
 using namespace std;
 
-#define COUNT 500
+//#define COUNT 500
+#define COUNT 512
 #define NUMPOINTS 65
 #define RESISTANCE 470
-
-
 
 long double allcurves[NUMPOINTS];
 int indexInAllCurves = 0;

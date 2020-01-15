@@ -3,6 +3,10 @@
 #include <ADC.h> // inculde ADC library
 #include <SD.h>
 #include <SPI.h>
+
+//#define COUNT 500
+#define COUNT 512
+
 const int chipSelect = BUILTIN_SDCARD;
 int timerFlage = 0, NumCurve =0;
 uint8_t smartLoad_pins[8]={5,6,7,8,9,10,11,12}; // define an array of 8 pins to randomally generate a smart load
@@ -110,7 +114,7 @@ delayMicroseconds(550);        // pauses for 550 microseconds (swichs for smart 
       timeStampData[0] = (byte) (( timeStamp & 0X000000FF)       );
       dataFile.write(timeStampData, 4);
     }
-    if (pointCount == 4990)
+    if (pointCount == COUNT * 10 - 10)
   {
        EndTimetMillis =  millis();
       timeStampData[3] = (byte) (( EndTimetMillis & 0xFF000000) >> 24 );
@@ -126,7 +130,7 @@ delayMicroseconds(550);        // pauses for 550 microseconds (swichs for smart 
     
   } 
   
-  if (pointCount == 5000)
+  if (pointCount == COUNT * 10)
   {
     EndTimetMillis =  millis();
     pointCount = 0;
@@ -149,10 +153,6 @@ delayMicroseconds(550);        // pauses for 550 microseconds (swichs for smart 
         exit(0); // stop the program
       }
   }
-
- 
-
-
 
 }
 }

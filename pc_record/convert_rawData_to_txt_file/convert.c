@@ -6,7 +6,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define COUNT 500
+//#define COUNT 500
+#define COUNT 512
 long double curvedata[2][COUNT];
 int main(int argc, char **argv)
 {

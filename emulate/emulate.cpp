@@ -27,7 +27,8 @@
 #endif
 /////////////////////////////////////////////////////////////////
 
-#define COUNT 500		 // number of points per curve
+//#define COUNT 500		 // number of points per curve
+#define COUNT 512
 #define NUMPOINTS 65	 // x axis (voltage) points
 #define RESISTANCE 17000 // 150 K ohms on Ekho emulator board
 

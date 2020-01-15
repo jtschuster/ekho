@@ -11,8 +11,8 @@ CFLAGS=-g -Wall -pedantic -lm -Wno-deprecated
 BREW=-I/usr/local/include -L/usr/local/lib
 GSL=-I/usr/local/Cellar/gsl/1.16/include  -lgsl -lgslcblas
 
-record: jacksonrecord.cpp
-	$(CC) jacksonrecord.cpp $(CFLAGS) $(BREW) $(GL) $(GSL) -o record
+record: pc_record.cpp
+	$(CC) pc_record.cpp $(CFLAGS) $(BREW) $(GL) $(GSL) -o record
 
 clean:
-	rm -rf record jacksonrecord.dSYM
+	rm -rf record pc_record.dSYM

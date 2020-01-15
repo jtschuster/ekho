@@ -1,6 +1,7 @@
 
 #include <ADC.h> // inculde ADC library
-
+#define COUNT 512
+//#define COUNT 500
 uint8_t smartLoad_pins[8]={5,6,7,8,9,10,11,12}; // define an array of 8 pins to randomally generate a smart load
 ADC *adc = new ADC(); // adc object
 uint16_t voltage, current_1,current_2,current_3, Vref;

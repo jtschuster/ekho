@@ -1,5 +1,8 @@
 #include <ADC.h>
 
+//#define COUNT 500
+#define COUNT 512
+
 ADC *adc = new ADC();
 uint16_t current_curve[65];
 const int statPin=2;

@@ -24,7 +24,8 @@
 #error "Unable to define getRealTime( ) for an unknown OS."
 #endif
 /////////////////////////////////////////////////////////////////
-#define COUNT 500
+//#define COUNT 500
+#define COUNT 512
 #define NUMPOINTS 65
 
 
