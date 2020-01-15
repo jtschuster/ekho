@@ -131,7 +131,7 @@ void convert_data()
 		if (n <= 0)
 			break;
 
-		if (1) //(points++ == COUNT - 1)
+		if (points++ == COUNT - 1)
 		{
 			////////////////////////// .ivs conversion ////////////////////////
 
@@ -386,7 +386,6 @@ int main(int argc, char **argv) // Create Main Function For Bringing It All Toge
 	fprintf(raw_plot_outfile, "set palette rgbformulae 8, 9, 7\n");
 	fprintf(raw_plot_outfile, "splot \"-\" using 2:1:3 with pm3d\n");
 	fprintf(raw_plot_outfile, "# Time, Voltage, Current\n");
-
 	convert_data();
 
 	fclose(infile);
