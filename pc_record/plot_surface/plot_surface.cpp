@@ -117,7 +117,7 @@ void convert_data()
 	{
 
 		//Binary file
-		points = 499;
+		points = COUNT - 1;
 		n = fread(&timestamp, sizeof(double), 1, infile);
 		// read from file all x points (voltages)
 		n = fread(curvedata[0], sizeof(long double), COUNT, infile);
@@ -131,7 +131,7 @@ void convert_data()
 		if (n <= 0)
 			break;
 
-		if (points++ == COUNT - 1)
+		if (1) //(points++ == COUNT - 1)
 		{
 			////////////////////////// .ivs conversion ////////////////////////
 
