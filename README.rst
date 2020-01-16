@@ -4,7 +4,7 @@ Ekho
 This repository contains the code required to run the ekho.
 
 Tool Requirements
-------------
+-----------------
     - GNU Scientific Library (GSL) 
     - OpenGL Utility Kit (GLUT)
     - g++ and gcc
@@ -13,13 +13,13 @@ Tool Requirements
     - GNUplot
 
 Directories
------
+-----------
     - pc_recorder: Teensy code and a real-time processing code to record the IV surface (combination of IV curves) while connected to a computer. Includes a real-time plot of the IV curves.
     - mobile_recorder: Teensy code to record IV curves when disconnected from a computer (for recording in the wild), and code to convert the raw data from the SD card to useable formats.
     - pc_emulator: Computer and teensy code required to emulate a recorded IV surface.
 
 File Formats
-----------
+------------
     .raw
     ----
     This format is what the recorded data is placed into after initial processing. The data is in binary format and can be converted into a text file using the tools in pc_recorder. It has the following format repeated for a number of timestamps:
