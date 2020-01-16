@@ -22,9 +22,10 @@ Directories
 File Formats
 ------------
 
-**.raw** 
+**raw** 
     format is what the recorded data is placed into after initial processing. The data is in binary format and can be converted into a text file using the tools in pc_recorder. It has the following format repeated for a number of timestamps:\
-    |``<timestamp, 1 double value> <voltages, 512 long double values> <currents, 512 long double values>``
+    
+    ``<timestamp, 1 double value> <voltages, 512 long double values> <currents, 512 long double values>``
 
     The j'th voltage value corresponds to the j'th current value. Together, the 512 (voltage, current) points can be regressed to create an IV curve. 
 
@@ -35,7 +36,10 @@ File Formats
 
 **.ivs** 
     This format is used by pc_emulator to store processed data after finding a regression on the .raw data points. This regression coverts 500 raw data points per IV curve from .raw file into 65 data points which are simpler and faster to emulate. Several IV curves made up 65 data points together make an IV surface (.ivs). This file is also in unreadable binary format. It has the following format repeated for a number of timestamps:
+    
     ``<timestamp, 1 double value> <currents, 65 long double values>``
-**.gnu** is a gnuplot file of the IV surfaces. See gnuplot online documentation for more info.
+
+**.gnu** 
+    This is a gnuplot file of the IV surfaces. See gnuplot online documentation for more info.
 
 
