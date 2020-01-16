@@ -1,5 +1,8 @@
-pc_record contains tools for recording while connected to a computer. 
+This folder contains tools for recording while connected to a computer. 
 
+
+Run 
+    make clean
 Run record.sh to record an IV surface and convert it to .ivs and .gnu files.
 
 Folders:
