@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-g -Wall -pedantic -lm -Wno-deprecated
 #-g for debugging
-convert: convert.c
+all: convert.c
 	$(CC) convert.c $(CFLAGS) -o convert
 
 

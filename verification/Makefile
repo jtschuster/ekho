@@ -6,7 +6,7 @@ CFLAGS=-g -Wall -pedantic -lm
 
 
 
-mse:
+all:
 	$(CC) mse.cpp $(CFLAGS) $(GSL) $(BREW) -o mse
 
 clean:

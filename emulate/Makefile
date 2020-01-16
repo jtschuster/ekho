@@ -1,16 +1,19 @@
-CC=clang++
-BREW=-I/usr/local/include -L/usr/local/lib
-GSL=-I/usr/local/Cellar/gsl/1.16/include  -lgsl -lgslcblas
-CFLAGS=-g -Wall -pedantic -lm
+SUBDIRS = emulate repeat_curve
+MAKE = make all
+CLEAN = make clean
 
-
-
-
-emulate:
-	$(CC) emulate.cpp $(CFLAGS) $(GSL) $(BREW) -o emulate
+all:
+	for dir in $(SUBDIRS); do \
+		$(MAKE) -C $$dir; \
+	done 
 
 clean:
-	rm -rf emulate emulate.dSYM
+	for dir in $(SUBDIRS); do \
+		$(CLEAN) -C $$dir; \
+	done 
 
-
-
+remake:
+	for dir in $(SUBDIRS); do \
+		$(CLEAN) -C $$dir; \
+		$(MAKE) -C $$dir; \
+	done 
