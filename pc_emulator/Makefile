@@ -1,4 +1,4 @@
-SUBDIRS = pc_emulator pc_recorder mobile_recorder verification
+SUBDIRS = emulator repeat_curve
 MAKE = make all
 CLEAN = make clean
 
