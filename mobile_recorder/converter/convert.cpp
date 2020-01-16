@@ -72,7 +72,7 @@ int count = 0;
 
 /////////////////////////////
 
-FILE *surface_outf, *rawpair_file, *rawData_file;
+FILE *surface_outf, *rawpair_file, *sdRawData_file;
 
 void idle_impl()
 {
@@ -90,7 +90,7 @@ void idle_impl()
 
 		if (points == 0)
 		{
-			n = fread(&buft, sizeof(unsigned char), 4, rawData_file); // get the start time of the curve
+			n = fread(&buft, sizeof(unsigned char), 4, sdRawData_file); // get the start time of the curve
 			start_timestamp = ((uint32_t)(buft[3]) << 24) + ((uint32_t)(buft[2]) << 16) + ((uint32_t)(buft[1]) << 8) + ((uint32_t)(buft[0]));
 
 			// printf ("start_timestamp : %f \n", start_timestamp);
@@ -98,13 +98,13 @@ void idle_impl()
 
 		if (points == COUNT - 1)
 		{
-			n = fread(&buft, sizeof(unsigned char), 4, rawData_file); // get the start time of the curve
+			n = fread(&buft, sizeof(unsigned char), 4, sdRawData_file); // get the start time of the curve
 			End_timestamp = ((uint32_t)(buft[3]) << 24) + ((uint32_t)(buft[2]) << 16) + ((uint32_t)(buft[1]) << 8) + ((uint32_t)(buft[0]));
 
 			//	printf ("End_timestamp : %f \n", End_timestamp);
 		}
 
-		n = fread(&buf, sizeof(unsigned char), 10, rawData_file);
+		n = fread(&buf, sizeof(unsigned char), 10, sdRawData_file);
 		totalN += n;
 		if (n < 10)
 		{
@@ -390,7 +390,7 @@ int main(int argc, char **argv) // Create Main Function For Bringing It All Toge
 	if (argc < 3)
 	{
 		fprintf(stderr, "This program records IV-surfaces with no rendering.\n");
-		fprintf(stderr, "	Usage:   ./record <output_file_name> <rawData_file_name>\n");
+		fprintf(stderr, "	Usage:   ./record <output_file_name> <sdRawData_file_name>\n");
 		exit(0);
 	}
 	if (argc > 2)
@@ -403,12 +403,12 @@ int main(int argc, char **argv) // Create Main Function For Bringing It All Toge
 	printf("Saving to %s and %s..\n", output_file_name, rawpair_file_name);
 	surface_outf = fopen(output_file_name, "w");
 	rawpair_file = fopen(rawpair_file_name, "w");
-	rawData_file = fopen(argv[2], "r");
+	sdRawData_file = fopen(argv[2], "r");
 
 	idle_impl();
 
 	fclose(surface_outf);
 	fclose(rawpair_file);
-	fclose(rawData_file);
+	fclose(sdRawData_file);
 	return 0;
 }

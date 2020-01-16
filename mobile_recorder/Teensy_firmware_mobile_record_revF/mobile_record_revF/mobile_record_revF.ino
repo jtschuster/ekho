@@ -37,7 +37,7 @@ void setup() {
       digitalWrite(led, HIGH);
       char filename[64];
       for (char i =0; i<10; i++) {
-        strcpy(filename, "rawdata_.raw");
+        strcpy(filename, "rawdata_.sdraw");
         filename[7] = i+'0';
         if (! SD.exists(filename)) {
           i = 10;

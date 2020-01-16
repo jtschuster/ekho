@@ -1,4 +1,4 @@
-SUBDIRS = recorder
+SUBDIRS = converter
 MAKE = make all
 CLEAN = make clean
 
