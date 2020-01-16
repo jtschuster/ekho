@@ -20,7 +20,7 @@ Directories
 
 File Formats
 ------------
-* **.raw** This format is what the recorded data is placed into after initial processing. The data is in binary format and can be converted into a text file using the tools in pc_recorder. It has the following format repeated for a number of timestamps:
+*  **.raw** This format is what the recorded data is placed into after initial processing. The data is in binary format and can be converted into a text file using the tools in pc_recorder. It has the following format repeated for a number of timestamps:
     ``<timestamp, 1 double value> <voltages, 512 long double values> <currents, 512 long double values>``
 The j'th voltage value corresponds to the j'th current value. Together, the 512 (voltage, current) points can be regressed to create an IV curve. 
 
