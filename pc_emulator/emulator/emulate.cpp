@@ -137,8 +137,6 @@ int main(int argc, char **argv)
 	loadmap(dm_literal, dac_map);
 	chdir("/emulator");
 
-	printf("here\n");
-
 	//Now init serial to emulation teensy
 	init_serial(argc, argv);
 	double timestamp = 0;
