@@ -20,9 +20,9 @@ Directories
 
 File Formats
 ------------
-**.raw** 
+* **.raw** 
 format is what the recorded data is placed into after initial processing. The data is in binary format and can be converted into a text file using the tools in pc_recorder. It has the following format repeated for a number of timestamps:
-        ``<timestamp, 1 double value> <voltages, 512 long double values> <currents, 512 long double values>``
+    ``<timestamp, 1 double value> <voltages, 512 long double values> <currents, 512 long double values>``
 The j'th voltage value corresponds to the j'th current value. Together, the 512 (voltage, current) points can be regressed to create an IV curve. 
 
 **.sdraw** format is used by mobile_recorder to store recorded data in a simpler form compared to .raw format. This is done because of the optimizations that are made to avoid floating point operatins on Teensy so to make the processing faster on the mobile platform. It has the following format repeated for a number of timestamps:
