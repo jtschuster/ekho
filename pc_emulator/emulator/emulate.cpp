@@ -119,21 +119,25 @@ void loadmap(char mapfname[], double maparray[])
 
 int main(int argc, char **argv)
 {
-	if (argc < 3)
-	{
-		fprintf(stderr, "Usage:   ./emulate <emulate port> <surface file>\n");
-		exit(0);
-	}
+	// if (argc < 3)
+	// {
+	// 	fprintf(stderr, "Usage:   ./emulate <emulate port> <surface file>\n");
+	// 	exit(0);
+	// }
 	// Sleep for a second
 	usleep(1000000);
 
 	// Load file
 
-	surface_inf = fopen(argv[2], "r");
+	// surface_inf = fopen(argv[2], "r");
 
 	// Load DAC maps
-	char dm_literal[] = "dacmap/dacmap.dat";
+	char dm_literal[] = "dac_mapper/dacmap.dat";
+	chdir("..");
 	loadmap(dm_literal, dac_map);
+	chdir("/emulator");
+
+	printf("here\n");
 
 	//Now init serial to emulation teensy
 	init_serial(argc, argv);
