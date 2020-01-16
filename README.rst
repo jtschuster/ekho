@@ -1,7 +1,7 @@
 Ekho
 ====
 
-This repository contains the code required to run the ekho.
+This repository contains the code required to run the Ekho.
 
 Tool Requirements
 -----------------
