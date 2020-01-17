@@ -3,8 +3,8 @@ Mobile Recording
 
 This folder contains Teensy firmware for in-wild recording and tools for converting the recorded data into useable formats. The converted data is used to emulate and display IV surfaces on the screen.
 
-Directories
------------
+Sub-Directories
+---------------
 
 - ``converter`` Tool for converting raw data from SD card into ``.raw`` format.
 - ``Teensy_firmware_mobile_record_revF`` Teensy firmware to record IV surfaces in the wild.
@@ -22,7 +22,7 @@ To record IV surfaces in the wild, you need to follow below steps
     
 ``./convert <surface_file_name(output)> <sdraw_file_from_sdcard(input)>``
 
-#. Both raw and regressed IV surfaces will be displayed on the screen.
+Both raw and regressed IV surfaces will be displayed on the screen.
 
 | Note
 - Run above command after compiling convert.cpp and generate_surface.cpp. This can be done individually by compiling in their respective directories i.e., by running ``make`` or ``make all``. Or both files can be compiled at once by just running ``make`` or ``make all`` in ekho home directory.

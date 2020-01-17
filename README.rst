@@ -12,8 +12,8 @@ Tool Requirements
 - Make
 - GNUplot
 
-Directories
------------
+Sub-Directories
+---------------
 
 - ``pc_recorder`` Teensy firmware and a real-time processing code to record IV surfaces while connected to a computer. Includes a real-time plot of the IV curves.
 - ``mobile_recorder`` Teensy firmware to record IV surfaces when disconnected from a computer (for recording in the wild), and code to convert the recorded data to useable formats.

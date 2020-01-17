@@ -3,8 +3,8 @@ PC Recording
 
 This directory contains Teensy firmware for recording IV surfaces when connected to a computer and tools for converting the recorded data into useable formats. The converted data is used to emulate and display IV surfaces on the screen.
 
-Directories
------------
+Sub-Directories
+---------------
 
 - ``recorder`` Tool for recording sampled data into ``.raw`` format.
 - ``Teensy_firmware_pc_record_revF`` Teensy firmware to record IV surfaces when connected with a PC.
@@ -21,7 +21,7 @@ To record IV surfaces in when connected to a PC, you need to follow below steps
     
 ``./record.sh <output file name> <time in ms> <usb port>``
 
-#. Both raw and regressed IV surfaces will be displayed on the screen.
+Both raw and regressed IV surfaces will be displayed on the screen.
 
 | Note
 - Run above command after compiling record.cpp and generate_surface.cpp. This can be done individually by compiling in their respective directories i.e., by running ``make`` or ``make all``. Or both files can be compiled at once by just running ``make`` or ``make all`` in ekho home directory.
