@@ -1,7 +1,7 @@
 Processing Mobile Recording Data
---------------------------------
+================================
 
-This folder contains tool for converting raw data from in-wild reording into useable formats
+This folder contains tool for converting raw data from in-wild reording into ``.raw`` and ``.ivs`` formats
 
 To process the data from SD card (stored in .sdraw format) follow below steps
 
