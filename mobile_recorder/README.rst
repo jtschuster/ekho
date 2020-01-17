@@ -16,13 +16,13 @@ To record IV surfaces in the wild, you need to follow below steps
 - Use "make clean" if needed .
 
 | ***.ivs**
-Regressed IV surface (65 points) in unreadable format that can be used for emulation.
+    Regressed IV surface (65 points) in unreadable format that can be used for emulation.
 
 | *.raw
-Raw IV surface (512 points) in unreadable binary format.
+    Raw IV surface (512 points) in unreadable binary format.
 
 | *.gnu
-GNU plot code for plotting the 65-point (per IV curve) IV surface
+    GNU plot code for plotting the 65-point (per IV curve) IV surface
 
 | *_raw.gnu
-GNU plot code for plotting the raw (512 points per IV curve) IV surface
+    GNU plot code for plotting the raw (512 points per IV curve) IV surface
