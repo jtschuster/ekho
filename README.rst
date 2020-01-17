@@ -23,7 +23,7 @@ File Formats
 ------------
 
 **.raw**
-    *Raw* format is what the recorded data is placed into after initial processing. The data is in binary format and can be converted into a text file using the tools in pc_recorder. It has the following format repeated for a number of timestamps:\
+    *Raw* format is what the recorded data is placed into after initial processing. The data is in binary format and can be converted into a text file using the tools in pc_recorder. It has the following format repeated for a number of timestamps:
     
     ``<timestamp, 1 double value> <voltages, 512 long double values> <currents, 512 long double values>``
 
@@ -35,7 +35,7 @@ File Formats
     ``<timestamp, 4 bytes> <raw values, 10 bytes>``
 
 **.ivs** 
-    *IV surface* format is used by pc_emulator to store processed data after finding a regression on the .raw data points. This regression coverts 500 raw data points per IV curve from .raw file into 65 data points which are simpler and faster to emulate. Several IV curves made up 65 data points together make an IV surface (.ivs). This file is also in unreadable binary format. It has the following format repeated for a number of timestamps:
+    *IV surface* format is used by pc_emulator and is generated after finding a regression on the raw data points. The regression coverts 512 raw data points per IV curve from .raw file into 65 data points. This makes emulation process faster. Several 65-point IV curves together make an IV surface (.ivs). This file is also in unreadable binary format. It has the following format repeated for a number of timestamps:
     
     ``<timestamp, 1 double value> <currents, 65 long double values>``
 
