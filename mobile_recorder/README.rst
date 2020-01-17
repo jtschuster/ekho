@@ -1,7 +1,7 @@
 Mobile Recording
 ----------------
 
-This folder contains tools for converting raw data from in-wild reording into useable formats. The converted data is used to diplay IV surfaces on the screen
+This folder contains Teensy firmware for in-wild recording and tools for converting the recorded data into useable formats. The converted data is used to emulate and display IV surfaces on the screen.
 
 To record IV surfaces in the wild, you need to follow below steps
 

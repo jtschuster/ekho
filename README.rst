@@ -15,8 +15,8 @@ Tool Requirements
 Directories
 -----------
 
-- ``pc_recorder`` Teensy code and a real-time processing code to record the IV surface (combination of IV curves) while connected to a computer. Includes a real-time plot of the IV curves.
-- ``mobile_recorder`` Teensy code to record IV curves when disconnected from a computer (for recording in the wild), and code to convert the raw data from the SD card to useable formats.
+- ``pc_recorder`` Teensy firmware and a real-time processing code to record the IV surface (combination of IV curves) while connected to a computer. Includes a real-time plot of the IV curves.
+- ``mobile_recorder`` Teensy firmware to record IV curves when disconnected from a computer (for recording in the wild), and code to convert the raw data from the SD card to useable formats.
 - ``pc_emulator`` Computer and teensy code required to emulate a recorded IV surface.
 
 File Formats
