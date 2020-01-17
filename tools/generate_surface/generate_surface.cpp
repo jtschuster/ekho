@@ -316,8 +316,8 @@ int main(int argc, char **argv) // Create Main Function For Bringing It All Toge
 {
 	if (argc != 3)
 	{
-		fprintf(stderr, "This program generates raw and regression GNU plot files and an IVS file.\n");
-		fprintf(stderr, "	Usage:   ./plot_surface <rawpair_file_name> <gnu_file_name> \n");
+		fprintf(stderr, "This program generates raw and regression .gnu plot files and an .ivs file.\n");
+		fprintf(stderr, "	Usage:   ./generate_surface <rawpair_file_name> <gnu_file_name> \n");
 		fprintf(stderr, "	Produces:\n\t\t<gnu_file_name>.ivs -- IVS file created from regression of raw data\n\t\t<gnu_file_name>.gnu -- gnu file for the visualization of curves used in .ivs file\n\t\t<gnu_file_name>_raw.gnu -- gnu file for visualization of data sampled in recording\n");
 
 		exit(0);

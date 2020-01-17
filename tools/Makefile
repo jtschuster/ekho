@@ -1,4 +1,4 @@
-SUBDIRS = pc_emulator pc_recorder mobile_recorder verification tools
+SUBDIRS = convert_IV_to_txt_file convert_rawData_to_txt_file generate_surface
 MAKE = make all
 CLEAN = make clean
 

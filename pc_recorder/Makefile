@@ -1,4 +1,4 @@
-SUBDIRS = recorder plot_surface convert_IV_to_txt_file convert_rawData_to_txt_file
+SUBDIRS = recorder
 CLEAN = make clean
 MAKE = make all
 

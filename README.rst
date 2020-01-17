@@ -15,9 +15,10 @@ Tool Requirements
 Directories
 -----------
 
-- ``pc_recorder`` Teensy firmware and a real-time processing code to record IV surfaces (combination of IV curves) while connected to a computer. Includes a real-time plot of the IV curves.
-- ``mobile_recorder`` Teensy firmware to record IV surfaces when disconnected from a computer (for recording in the wild), and code to convert the raw data from the SD card to useable formats.
-- ``pc_emulator`` Computer and teensy code required to emulate a recorded IV surface.
+- ``pc_recorder`` Teensy firmware and a real-time processing code to record IV surfaces while connected to a computer. Includes a real-time plot of the IV curves.
+- ``mobile_recorder`` Teensy firmware to record IV surfaces when disconnected from a computer (for recording in the wild), and code to convert the recorded data to useable formats.
+- ``pc_emulator`` Computer and teensy code to emulate a recorded IV surface.
+- ``tools`` Tools for visualizing and converting binary data to other readable formats.
 
 File Formats
 ------------
@@ -48,9 +49,11 @@ Usage
 
 - Run ``make clean`` to remove executable from all directories.
 - Run ``make`` or ``make all`` to compile and generate execuatables.
-- Follow instructions in ``pc_recorder`` to record IV surface by connecting Ekho reorder with the PC.
+- Run ``remake`` to clean, compile and generate execuatables.
+- Follow instructions in ``pc_recorder`` to record IV surfaces by connecting Ekho reorder with the PC.
 - Follow instructions in ``mobile_recorder`` to record IV surfaces in the wild.
 - Follow instructions in ``pc_emulator`` to emulate IV surface by connecting Ekho emulator with the PC.
+- Follow instructions in ``tools`` to convert and visualize the data.
 
 
 
