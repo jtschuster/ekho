@@ -3,6 +3,15 @@ Mobile Recording
 
 This folder contains Teensy firmware for in-wild recording and tools for converting the recorded data into useable formats. The converted data is used to emulate and display IV surfaces on the screen.
 
+Directories
+-----------
+
+- ``converter`` Teensy firmware and a real-time processing code to record the IV surface (combination of IV curves) while connected to a computer. Includes a real-time plot of the IV curves.
+- ``Teensy_firmware_mobile_record_revF`` Teensy firmware to record IV curves when disconnected from a computer (for recording in the wild), and code to convert the raw data from the SD card to useable formats.
+
+Usage
+-----
+
 To record IV surfaces in the wild, you need to follow below steps
 
 #. Connect Ekho record board to Teensy 3.6.
