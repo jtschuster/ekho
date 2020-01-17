@@ -15,7 +15,7 @@ To record IV surfaces in the wild, you need to follow below steps
 - Run above command after compiling convert.cpp and plot_surface.cpp. This can be done individually by compiling in their respective directories i.e., by running "make" or "make all". Or all files can be compiled at once by just running "make" or "make all" in ekho home directory.
 - Use "make clean" if needed .
 
-| *.ivs
+| ***.ivs**
 Regressed IV surface (65 points) in unreadable format that can be used for emulation.
 
 | *.raw
