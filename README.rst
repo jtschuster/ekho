@@ -1,7 +1,7 @@
 Ekho
 ====
 
-This repository contains the code required to run the Ekho.
+This repository contains the hardware, firware and tools required to run the Ekho.
 
 This version of the hardware is designed by Jacob Sorber and Arwa Alsubhi from PERSIST Lab at Clemson University. Tools and firmware are adapted from their original design and are significantly upgraded by Abu Bakar and Jackson Schuster from KaMoaMoa Lab at Northwestern University. 
 

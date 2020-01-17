@@ -26,7 +26,8 @@ To record IV surfaces in the wild, you need to follow below steps
 Both raw and regressed IV surfaces will be displayed on the screen.
 
 | Note
-- Run above command after compiling convert.cpp and generate_surface.cpp. This can be done individually by compiling in their respective directories i.e., by running ``make`` or ``make all``. Or both files can be compiled at once by just running ``make`` or ``make all`` in ekho home directory.
+- Run above command after compiling ``convert.cpp`` and ``generate_surface.cpp``. This can be done individually by compiling in their respective directories or in ekho software directory at once.
+- Run ``make`` or ``make all`` to compile in any of the above directory of your choice.
 - Use ``make clean`` or ``make remake`` if needed.
 
 Following files will be generated after running ``convert.sh``

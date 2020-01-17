@@ -1,5 +1,5 @@
 PC Recording
-================
+=============
 
 This directory contains Teensy firmware for recording IV surfaces when connected to a computer and tools for converting the recorded data into useable formats. The converted data is used to emulate and display IV surfaces on the screen.
 
@@ -12,10 +12,10 @@ Sub-Directories
 Usage
 -----
 
-To record IV surfaces in when connected to a PC, you need to follow below steps
+To record IV surfaces when connected to a PC, you need to follow below steps
 
 #. Connect Ekho record board to Teensy 3.6.
-#. Flash Teensy 3.6 with ``mobile_record_revF.ino`` code in ``Teensy_firmware_mobile_record_revF`` directory, using Arduino-teensy. In the code, change desired recording time by changing the value of ``RecordTime`` variable in miliseconds.
+#. Flash Teensy 3.6 with ``pc_record_revF.ino`` code in ``Teensy_firmware_pc_record_revF`` directory, using Arduino-teensy. In the code, change desired recording time by changing the value of ``RecordTime`` variable in miliseconds.
 #. Make sure the power switch on Ekho record board is either on teensy to power Ekho record board from teensy, or on battery if you choose to (don't forget to connect a battery) .
 #. To start recording, and run following command
     
@@ -24,7 +24,8 @@ To record IV surfaces in when connected to a PC, you need to follow below steps
 Both raw and regressed IV surfaces will be displayed on the screen.
 
 | Note
-- Run above command after compiling record.cpp and generate_surface.cpp. This can be done individually by compiling in their respective directories i.e., by running ``make`` or ``make all``. Or both files can be compiled at once by just running ``make`` or ``make all`` in ekho home directory.
+- Run above command after compiling ``record.cpp`` and ``generate_surface.cpp``. This can be done individually by compiling them in their respective directories or in ekho software directory at once.
+- Run ``make`` or ``make all`` to compile in any of the above directory of your choice.
 - Use ``make clean`` or ``make remake`` if needed.
 
 Following files will be generated after running ``convert.sh``
