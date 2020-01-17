@@ -19,7 +19,7 @@ To record IV surfaces in when connected to a PC, you need to follow below steps
 #. Make sure the power switch on Ekho record board is either on teensy to power Ekho record board from teensy, or on battery if you choose to (don't forget to connect a battery) .
 #. To start recording, and run following command
     
-``./record <surface_file_name(output)> <sdraw_file_from_sdcard(input)>``
+``./record.sh <output file name> <time in ms> <usb port>``
 
 #. Both raw and regressed IV surfaces will be displayed on the screen.
 

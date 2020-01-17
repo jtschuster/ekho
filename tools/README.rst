@@ -1,0 +1,3 @@
+- ``generate_surface`` Converts ``.raw`` data file into an ``.ivs`` file and two .gnu files for visualizing the recorded and regressed IV surfaces.
+- ``convert_IV_to_txt_file`` Converts an ``.ivs`` file into a ``.txt`` file with format ``<timestamp, voltage, current>``.
+- ``convert_rawData_to_txt_file: Converts a ``.raw`` file into a ``.txt`` file with format ``<timestamp, voltage, current>``.
