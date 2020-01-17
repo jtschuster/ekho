@@ -9,11 +9,11 @@ To convert the data, follow below steps
 #. Compile ``generate_surface.cpp`` file using ``make`` or ``make all``.
 #. Convert the data using below command.
 
-``./generate_surface <path to raw file> <output_file_name>``
+``./generate_surface <path_to_raw_file> <output_file_name>``
 
 Use ``make clean`` or ``make remake`` if needed.
 
-Following file(s) will be generated after running ``record``
+Following file(s) will be generated after running ``generate_surface``
 
 ***.ivs**
     Raw IV surface in unreadable binary format.
@@ -26,5 +26,5 @@ Following file(s) will be generated after running ``record``
 
 Use below commands to plot the IV surfaces
 
-#. ``gnuplot *.gnu``
-#. ``gnuplot _raw.gnu``
+#. ``gnuplot *.gnu`` for plotting regressed IV surface.
+#. ``gnuplot _raw.gnu`` for plotting raw IV surface.

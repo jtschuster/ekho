@@ -42,8 +42,8 @@ Following files will be generated after running ``convert.sh``
 ***_raw.gnu**
     GNU plot code for plotting the raw(recorded) IV surface.
 
-***.png**
+***_render.png**
     IV surface made up of regressed IV curves.
 
-***_raw.png**
+***_render_raw.png**
     IV surface made up of raw(recorded) IV curves.

@@ -1,7 +1,7 @@
 PC Recording
 ================
 
-This folder contains Teensy firmware for recording IV surfaces when connected to a computer and tools for converting the recorded data into useable formats. The converted data is used to emulate and display IV surfaces on the screen.
+This directory contains Teensy firmware for recording IV surfaces when connected to a computer and tools for converting the recorded data into useable formats. The converted data is used to emulate and display IV surfaces on the screen.
 
 Directories
 -----------
@@ -41,8 +41,8 @@ Following files will be generated after running ``convert.sh``
 ***_raw.gnu**
     GNU plot code for plotting the raw(recorded) IV surface.
 
-***.png**
+***_render.png**
     IV surface made up of regressed IV curves.
 
-***_raw.png**
+***_render_raw.png**
     IV surface made up of raw(recorded) IV curves.

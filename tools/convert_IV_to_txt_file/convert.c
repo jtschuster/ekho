@@ -13,7 +13,7 @@ long double VOLTAGES[NUMPOINTS]  = { 0, 0.16615384615, 0.33230769230, 0.49846153
 long double current[NUMPOINTS];
 int main(int argc, char **argv) {
 	double timestamp;
-	FILE *IVdata,*IVdata_text;
+	FILE *IVSData,*IVSData_text;
 	if (argc < 1) {
 		fprintf(stderr, "Usage:   convert <IV_data_file> \n");
 		exit(0);
@@ -21,15 +21,15 @@ int main(int argc, char **argv) {
 
 
 	// Load file
-	IVdata=fopen(argv[1], "r");
-	IVdata_text = fopen("IVdata.txt", "w");
-	fprintf(IVdata_text, "voltage,current\n"); // voltage, current
+	IVSData=fopen(argv[1], "r");
+	IVSData_text = fopen("IVSData.txt", "w");
+	fprintf(IVSData_text, "voltage,current\n"); // voltage, current
 
 	int n;
 	while(1) {
-	n = fread(&timestamp, sizeof(double), 1, IVdata);
+	n = fread(&timestamp, sizeof(double), 1, IVSData);
 	// read from file all currents
-	n = fread(&current, sizeof(long double), NUMPOINTS, IVdata);
+	n = fread(&current, sizeof(long double), NUMPOINTS, IVSData);
 
 
 	if(n < 1) {
@@ -39,7 +39,7 @@ else {
 for (int i=0; i<NUMPOINTS; i++)
 {
 
- fprintf(IVdata_text, "%lf\t%.20Lf\t%.20Lf\n",timestamp,VOLTAGES[i],current[i]); // voltage, current
+ fprintf(IVSData_text, "%lf\t%.20Lf\t%.20Lf\n",timestamp,VOLTAGES[i],current[i]); // voltage, current
 }//end if
 
 
@@ -48,8 +48,8 @@ for (int i=0; i<NUMPOINTS; i++)
 
 }//end while
 
-fclose(IVdata);
-fclose(IVdata_text);
+fclose(IVSData);
+fclose(IVSData_text);
 
 return 0;
 }//end main
