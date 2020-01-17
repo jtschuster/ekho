@@ -1,6 +1,8 @@
 Mobile Recording
 ----------------
 
+This folder contains tools for converting raw data from in-wild reording into useable formats. The converted data is used to diplay IV surfaces on the screen
+
 To record IV surfaces in the wild, you need to follow below steps
 
 #. Connect Ekho record board to Teensy 3.6.
