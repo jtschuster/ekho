@@ -133,9 +133,9 @@ int main(int argc, char **argv)
 
 	// Load DAC maps
 	char dm_literal[] = "dac_mapper/dacmap.dat";
-	chdir("..");
+	chdir("../tools");
 	loadmap(dm_literal, dac_map);
-	chdir("/emulator");
+	chdir("../emulator");
 
 	//Now init serial to emulation teensy
 	init_serial(argc, argv);

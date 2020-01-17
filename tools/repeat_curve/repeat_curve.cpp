@@ -24,23 +24,10 @@
 #error "Unable to define getRealTime( ) for an unknown OS."
 #endif
 /////////////////////////////////////////////////////////////////
-//#define COUNT 500
 #define COUNT 512
 #define NUMPOINTS 65
 
 
-
-
-long double VOLTAGES[NUMPOINTS] = {0, 0.16615384615, 0.33230769230, 0.49846153845, 0.66461538460, 0.83076923075, 0.99692307690, 1.16307692305, 1.32923076920, 1.49538461535, 1.66153846150, 1.82769230765, 1.99384615380, 2.15999999995, 2.32615384610, 2.49230769225, 2.65846153840, 2.82461538455, 2.99076923070, 3.15692307685, 3.32307692300, 3.48923076915, 3.65538461530, 3.82153846145, 3.98769230760, 4.15384615375, 4.31999999990, 4.48615384605, 4.65230769220, 4.81846153835, 4.98461538450, 5.15076923065, 5.31692307680, 5.48307692295, 5.64923076910, 5.81538461525, 5.98153846140, 6.14769230755, 6.31384615370, 6.47999999985, 6.64615384600, 6.81230769215, 6.97846153830, 7.14461538445, 7.31076923060, 7.47692307675, 7.64307692290, 7.80923076905, 7.97538461520, 8.14153846135, 8.30769230750, 8.47384615365, 8.63999999980, 8.80615384595, 8.97230769210, 9.13846153825, 9.30461538440, 9.47076923055, 9.63692307670, 9.80307692285, 9.96923076900, 10.13538461515, 10.30153846130, 10.46769230745, 10.63384615360};
-/*  Where are these values come from ?
-   10.8 volts is max voltage range can be produced by the emulator board and we have 65 points on x axis (voltage).
-	 so 10.8/65 = 0.16615384615L. to get all 65 points value on x axis, 0.16615384615 is added to get next point on the axis.
-    long double v=0;
-   for (int j=1;j<65;j++)
-   {
-       v+=0.16615384615L; // 10.8(max voltage range)/65points
-   }
-*/
 double curve_time;
 double timestamp;
 char outfile_name[255];
@@ -50,7 +37,7 @@ long double curvepoints[NUMPOINTS];
 int main(int argc, char **argv) {
     if (argc < 3) {
         fprintf(stderr, "repeat_curve: creates a ten second IVS file from one curve of a recording.\n");
-        fprintf(stderr, "\tFormat: ./repeat_curve <.ivs file> <time of curve> <output file>\n");
+        fprintf(stderr, "\tFormat: ./repeat_curve <path_to_ivs_file> <time_of_curve> <output_file_name>\n");
         fprintf(stderr, "\tNote: time must be to at least 1 decimal place.");
         exit(0);
     }
