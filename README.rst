@@ -47,7 +47,7 @@ File Formats
 Usage
 -------
 
-- Run ``make clean`` to remove executable from all directories.
+- Run ``make clean`` to remove executable from all sub-directories.
 - Run ``make`` or ``make all`` to compile and generate execuatables.
 - Run ``remake`` to clean, compile and generate execuatables.
 - Follow instructions in ``pc_recorder`` to record IV surfaces by connecting Ekho reorder with the PC.

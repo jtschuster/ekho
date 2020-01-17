@@ -6,7 +6,7 @@ This folder contains tool for converting raw data from in-wild reording into ``.
 To process the data from SD card (stored in .sdraw format), follow below steps
 
 #. Connect the SD card to your computer
-#. Compile convert.cpp file using ``make`` or ``make all`` 
+#. Compile ``convert.cpp`` file using ``make`` or ``make all`` 
 #. Convert ``.sdraw`` file to ``.raw`` format using following:
 
 ``./convert <surface_file_name(output)> <sdraw_file_from_sdcard(input)>``
