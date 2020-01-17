@@ -22,24 +22,24 @@ Directories
 File Formats
 ------------
 
-| **.raw**
+**.raw**
     *Raw* format is what the recorded data is placed into after initial processing. The data is in binary format and can be converted into a text file using the tools in pc_recorder. It has the following format repeated for a number of timestamps:\
     
     ``<timestamp, 1 double value> <voltages, 512 long double values> <currents, 512 long double values>``
 
     The j'th voltage value corresponds to the j'th current value. Together, the 512 (voltage, current) points can be regressed to create an IV curve. 
 
-| **.sdraw**
+**.sdraw**
     *SDRaw* format is used by mobile_recorder to store recorded data in the SD card in a simpler form compared to .raw format. This is done because of the optimizations that are made to avoid floating point operatins on Teensy so to make the processing faster on the mobile platform. It has the following format repeated for a number of timestamps:
     
     ``<timestamp, 4 bytes> <raw values, 10 bytes>``
 
-| **.ivs** 
+**.ivs** 
     *IV surface* format is used by pc_emulator to store processed data after finding a regression on the .raw data points. This regression coverts 500 raw data points per IV curve from .raw file into 65 data points which are simpler and faster to emulate. Several IV curves made up 65 data points together make an IV surface (.ivs). This file is also in unreadable binary format. It has the following format repeated for a number of timestamps:
     
     ``<timestamp, 1 double value> <currents, 65 long double values>``
 
-| **.gnu** 
+**.gnu** 
     This is a gnuplot file of the IV surfaces. See gnuplot online documentation for more info.
 
 
