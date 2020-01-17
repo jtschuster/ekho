@@ -2,6 +2,7 @@ Processing Mobile Recording Data
 --------------------------------
 
 To process the data from SD card (stored in .sdraw format) follow below steps
+
 #. Connect the SD card to your computer
 #. Compile convert.cpp file using ``make`` or ``make all`` 
 #. Convert .sdraw file to .raw and .ivs formats using following:
