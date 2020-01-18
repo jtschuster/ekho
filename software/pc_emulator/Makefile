@@ -1,4 +1,4 @@
-SUBDIRS = emulator repeat_curve
+SUBDIRS = emulator
 MAKE = make all
 CLEAN = make clean
 

@@ -1,4 +1,4 @@
-SUBDIRS = convert_ivs_to_txt convert_raw_to_txt generate_surface
+SUBDIRS = convert_ivs_to_txt convert_raw_to_txt generate_surface repeat_curve
 MAKE = make all
 CLEAN = make clean
 
