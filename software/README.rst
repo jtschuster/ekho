@@ -21,7 +21,7 @@ File Formats
 
     The j'th voltage value corresponds to the j'th current value. Together, the 512 (voltage, current) points can be regressed to create an IV curve. 
 
-**.sdraw**
+**.sdr**
     *SDRaw* format is used by mobile_recorder to store recorded data in the SD card in a simpler form compared to ``.raw`` format. This is done because of the optimizations that are made to avoid floating point operatins on Teensy so to make the processing faster on the mobile platform. It has the following format repeated for a number of timestamps:
     
     ``<timestamp, 4 bytes> <raw values, 10 bytes>``
