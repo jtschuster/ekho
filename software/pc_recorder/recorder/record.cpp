@@ -318,7 +318,7 @@ void idle_impl()
 			{
 				printf("=======\nRaw file created!\n Recorded %d curves for %lf seconds to output file %s \n=======\n", numcurves + 1, timestamp, rawpair_file_name);
 				fclose(rawpair_file);
-				fclose(surface_outf);
+				//fclose(surface_outf);
 				close(port);
 				exit(1);
 				break;
