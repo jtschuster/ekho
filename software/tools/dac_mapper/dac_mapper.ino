@@ -15,7 +15,7 @@ char file[255];
 File dataFile; 
 
 void setup() {
-	  Serial.begin(9600);
+	Serial.begin(9600);
   StartTimetMillis=millis();
 	pinMode(A2, INPUT); //VS_amp
   pinMode(A21, OUTPUT);
@@ -47,7 +47,7 @@ void setup() {
     
       digitalWrite(led, HIGH);
       
-      dataFile = SD.open("dacpmap.txt", FILE_WRITE);
+      dataFile = SD.open("dacmap.txt", FILE_WRITE);
   }
 
 }

@@ -1,6 +1,13 @@
+#if defined(__MACH__) && defined(__APPLE__)
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
+#include <GL/glu.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
+#endif
+
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>

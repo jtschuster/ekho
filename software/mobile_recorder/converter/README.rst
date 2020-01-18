@@ -3,13 +3,13 @@ Processing In-Wild Recorded IV Surfaces
 
 This folder contains tool for converting raw data from in-wild reording into ``.raw`` format.
 
-To process the data from SD card (stored in .sdraw format), follow below steps
+To process the data from SD card (stored in .sdr format), follow below steps
 
 #. Connect the SD card to your computer
 #. Compile ``convert.cpp`` file using ``make`` or ``make all`` 
-#. Convert ``.sdraw`` file to ``.raw`` format using following:
+#. Convert ``.sdr`` file to ``.raw`` format using following:
 
-``./convert <surface_file_name(output)> <sdraw_file_from_sdcard(input)>``
+``./convert <surface_file_name(output)> <sdr_file_from_sdcard(input)>``
 
 Use ``make clean`` or ``make remake`` if needed.
 

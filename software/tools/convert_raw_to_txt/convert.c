@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	double timestamp;
 	FILE *rawdata, *rawdata_text;
 	char outfile_name[255];
-	if (argc < 1)
+	if (argc <= 1)
 	{
 		fprintf(stderr, "Usage:   convert <raw_data_file> <output text file>\n");
 		exit(0);
@@ -31,9 +31,10 @@ int main(int argc, char **argv)
 	{
 		strcpy(outfile_name, "rawData.txt");
 	}
+	printf("Saving to %s...\n", outfile_name);
 	rawdata_text = fopen(outfile_name, "w");
 
-	fprintf(rawdata_text, "#timestamp,voltage,current\n"); // voltage, current
+	fprintf(rawdata_text, "Timestamp (s), Voltage(V), Current (A)\n"); // voltage, current
 
 	int n;
 	while (1)

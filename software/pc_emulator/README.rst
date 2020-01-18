@@ -25,5 +25,6 @@ Keep following the output on the terminal
 
 | Note
 - Run above command after compiling emulate.cpp. This can be done by compiling it in ``emulator`` directory or in Ekho software directory. 
+- The emulation program has a one second delay before beginning emulation.
 - Run ``make`` or ``make all`` to compile in any of the above directory of your choice.
 - Use ``make clean`` or ``make remake`` if needed.

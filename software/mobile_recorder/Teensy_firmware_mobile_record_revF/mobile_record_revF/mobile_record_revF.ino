@@ -36,15 +36,18 @@ void setup() {
   else{
       digitalWrite(led, HIGH);
       char filename[64];
-      for (char i =0; i<10; i++) {
-        strcpy(filename, "rawdata_.sdraw");
+      for (char i = 0; i<10; i++) {
+        strcpy(filename, "rawdata_.sdr");
         filename[7] = i+'0';
         if (! SD.exists(filename)) {
-          i = 10;
+          i=9;
         }
       }
       
       dataFile = SD.open(filename, FILE_WRITE);
+      if (!dataFile) {
+        digitalWrite(led, LOW);
+      }
   }
   
   pinMode(5,OUTPUT);

@@ -411,7 +411,7 @@ uint64_t start;
 uint64_t end;
 uint64_t elapsed;
 uint64_t elapsedNano;
-static mach_timebase_info_data_t sTimebaseInfo;
+//static mach_timebase_info_data_t sTimebaseInfo;
 
 int main(int argc, char **argv) // Create Main Function For Bringing It All Together
 {
@@ -437,15 +437,15 @@ int main(int argc, char **argv) // Create Main Function For Bringing It All Toge
 	rawpair_file = fopen(rawpair_file_name, "w");
 	init_serial(argc, argv);
 
-	if (sTimebaseInfo.denom == 0)
-	{
-		(void)mach_timebase_info(&sTimebaseInfo);
-	}
-	start = mach_absolute_time();
-	if (sTimebaseInfo.denom == 0)
-	{
-		(void)mach_timebase_info(&sTimebaseInfo);
-	}
+//	if (sTimebaseInfo.denom == 0)
+//	{
+//		(void)mach_timebase_info(&sTimebaseInfo);
+//	}
+//	start = mach_absolute_time();
+//	if (sTimebaseInfo.denom == 0)
+//	{
+//		(void)mach_timebase_info(&sTimebaseInfo);
+//	}
 	init_serial(argc, argv);
 
 	GLOBAL_START = getRealTime();

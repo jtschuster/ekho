@@ -166,7 +166,6 @@ void idle_impl()
 			//	printf ("start_timestamp : %f \n", start_timestamp);
 			//	printf ("End_timestamp : %f \n", End_timestamp);
 			start_timestamp = start_timestamp * 0.001;
-			fwrite(&start_timestamp, sizeof(double), 1, surface_outf);
 			fwrite(&start_timestamp, sizeof(double), 1, rawpair_file);
 			//printf ("after writing time stampe\n");
 			// Write to file all x points (voltages)
@@ -175,7 +174,6 @@ void idle_impl()
 			fwrite(&curvedata[1], sizeof(long double), COUNT, rawpair_file);
 			create_curves_with_regression();
 			// Pipe curve output to file
-			fwrite(&allcurves[indexInAllCurves], sizeof(long double), NUMPOINTS, surface_outf);
 			start_timestamp = start_timestamp * 1000;
 
 			//printf("End wrting %d curves\n",numcurves );
@@ -389,25 +387,21 @@ int main(int argc, char **argv) // Create Main Function For Bringing It All Toge
 
 	if (argc < 3)
 	{
-		fprintf(stderr, "This program records IV-surfaces with no rendering.\n");
+		fprintf(stderr, "This program converts the .sdraw file from the mobile recorder teensy into a .raw file.\n");
 		fprintf(stderr, "	Usage:   ./record <output_file_name> <sdRawData_file_name>\n");
 		exit(0);
 	}
 	if (argc > 2)
 	{
-		strcpy(output_file_name, argv[1]);
 		strcpy(rawpair_file_name, argv[1]);
-		strcat(output_file_name, ".ivs");
 		strcat(rawpair_file_name, ".raw");
 	}
-	printf("Saving to %s and %s..\n", output_file_name, rawpair_file_name);
-	surface_outf = fopen(output_file_name, "w");
+	printf("Saving to and %s..\n", rawpair_file_name);
 	rawpair_file = fopen(rawpair_file_name, "w");
 	sdRawData_file = fopen(argv[2], "r");
 
 	idle_impl();
 
-	fclose(surface_outf);
 	fclose(rawpair_file);
 	fclose(sdRawData_file);
 	return 0;

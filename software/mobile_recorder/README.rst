@@ -19,9 +19,9 @@ To record IV surfaces in the wild, you need to follow below steps
 #. Make sure the power switch on Ekho record board is either on teensy to power Ekho record board from teensy, or on battery if you choose to (don't forget to connect a battery) .
 #. Insert SD card into teensy and notice the led will be on while IV curves are being recorded and will turn off when the recording is completed. Note each curve needs 5128 bytes. So, make sure that you have enough space on the SD card.
 #. Leave the recorder in the environment you want to capture IV surfaces for, and remove the SD  card after desired time.
-#. To process the data from the SD card (stored in ``.sdraw`` format), connect the SD card to your computer, and run following.
+#. To process the data from the SD card (stored in ``.sdr`` format), connect the SD card to your computer, and run following.
     
-``./convert <surface_file_name(output)> <sdraw_file_from_sdcard(input)>``
+``./convert <surface_file_name(output)> <sdr_file_from_sdcard(input)>``
 
 Both raw and regressed IV surfaces will be displayed on the screen.
 
