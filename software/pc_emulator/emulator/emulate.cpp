@@ -125,12 +125,12 @@ int main(int argc, char **argv)
 		exit(0);
 	}
 	// Sleep for a second
-	usleep(1000000);
+	//usleep(1000000);
 
 	// Load file
-
+	printf("before loading .ivs");
 	surface_inf = fopen(argv[2], "r");
-
+	printf("loaded surface file");
 	// Load DAC maps
 	char dm_literal[] = "dac_mapper/dacmap.dat";
 	chdir("../tools");
@@ -202,7 +202,7 @@ int main(int argc, char **argv)
 			// printf("%d, %Lf, %Lf\n",dacvalues[i],Curvevolt-VOLTAGES[i], VOLTAGES[i]);
 
 		} // end for
-
+		//printf("About to send to teensy");
 		// Send curve to teensy
 		n = write(port, dacvalues, NUMPOINTS * 2);
 		printf("sent=%d\n", n);

@@ -63,7 +63,7 @@ void draw_text_labels() {
 	for(int i=0;i<11;i++) {
 		sprintf(buf, "%.1fV", (xsize / 10) * i);
 		glRasterPos2f((xsize / 10)* i + x_plot_offset, 0);
-		for (int j=0;j<strlen(buf);j++)
+		for (unsigned int j=0;j<strlen(buf);j++)
 		{
 			glutBitmapCharacter(font, buf[j]);
 		}
@@ -71,7 +71,7 @@ void draw_text_labels() {
 	for(int i=1;i<11;i++) {
 		sprintf(buf, "%.4fA", (ysize / 10) * i);
 		glRasterPos2f(0, (ysize / 10) * i + y_plot_offset);
-		for (int j=0;j<strlen(buf);j++)
+		for (unsigned int j=0;j<strlen(buf);j++)
 		{
 			glutBitmapCharacter(font, buf[j]);
 		}

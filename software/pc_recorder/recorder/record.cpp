@@ -193,7 +193,7 @@ void idle_impl()
 	double timestamp = 0.0;
 	double start;
 	double end;
-	double elapsed;
+	//double elapsed;
 	unsigned char buf[BUFSIZE];
 	int buffered_bytes = 0;
 	double idle_start;
@@ -303,7 +303,7 @@ void idle_impl()
 			// Figure out how many seconds elapsed for this curve
 			///////////////////////////////////////////
 			end = getRealTime();
-			elapsed = end - start; // Time elapsed in second
+			//elapsed = end - start; // Time elapsed in second
 			// Pipe timestamp to both files
 			timestamp += end - GLOBAL_START;
 			printf("timestamp : %f \n", timestamp);

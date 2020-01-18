@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	printf("Saving to %s...\n", outfile_name);
 	rawdata_text = fopen(outfile_name, "w");
 
-	fprintf(rawdata_text, "Timestamp (s), Voltage(V), Current (A)\n"); // voltage, current
+	fprintf(rawdata_text, "Timestamp (s), \tVoltage(V), \tCurrent (A)\n"); // voltage, current
 
 	int n;
 	while (1)
