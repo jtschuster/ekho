@@ -10,7 +10,7 @@
 
 4- connect 12-18 volts battery to Ekho emulate board.
 5- place a capacitor between EKho output "load" and your load. I use 2.2 uF. You may need a much smaller capacitor if you use a large resistor. Keep in mind the RC constant and whether it is reasonable for your application.
-6- Although , the board has 470 ohm sense resistor , but you might need to remove it and replaced it by a resistor that suit your recorded harvester. Also you have to change the variable "RESISTANCE" value in "emulate.cpp" to reflect the resistance that you are using.
+6- Although the board has a 470 ohm sense resistor, but you might need to remove it and replaced it by a resistor that suit your recorded harvester. Also you have to change the variable "RESISTANCE" value in "emulate.cpp" to reflect the resistance that you are using. You can place a resistor between the P$1 (LOAD_V) and P$2 (AMPOUT) pins to interchange.
 
 How to choose a sense resistor for a certain harvester?
 
