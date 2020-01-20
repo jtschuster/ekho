@@ -19,7 +19,8 @@ To emulate IV surfaces when connected to a PC, you need to follow below steps
 #. Flash Teensy 3.6 with ``pc_emulate_revE.ino`` code in ``Teensy_firmware_pc_emulate_revE`` directory, using Arduino-teensy.
 #. Make sure emulator is powered by a 12V battery or power supply.
 #. Place a capacitor between EKho output "load" and your load. I use 2.2 uF. You may need a much smaller capacitor if you use a large resistor. Keep in mind the RC constant and whether it is reasonable for your application.
-#. Although the board has a 470 ohm sense resistor, but you might need to remove it and replaced it by a resistor that suit your recorded harvester. Also you have to change the variable "RESISTANCE" value in "emulate.cpp" to reflect the resistance that you are using. You can place a resistor between the P$1 (LOAD_V) and P$2 (AMPOUT) pins.
+#. Although the board has a 470 ohm sense resistor, you might need to remove it and replace it with a resistor that suits your recordeding. You should also change the variable "RESISTANCE" value in "emulate.cpp" to reflect the resistance that you are using. You can place a resistor between the P$1 (LOAD_V) and P$2 (AMPOUT) pins.
+    
     How to choose a sense resistor for a certain harvester?
     You need to know what the maximum voltage and current your harvester can produce ( by plotting the recorded data).
     Suppose that your harvester produces maximum 4.15 voltage and maximum 0.00004 Amp current, so subtract maximum voltage of your harvester form the maximum voltage that Ekho recorder can play which is 10.30 and divide the result by the maximum current of your harvester. (10.3-4.15)/0.00004 = 125K resistor.
