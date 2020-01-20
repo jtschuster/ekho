@@ -23,7 +23,7 @@ To emulate IV surfaces when connected to a PC, you need to follow below steps
     
     How to choose a sense resistor for a certain harvester?
     You need to know what the maximum voltage and current your harvester can produce ( by plotting the recorded data).
-    Suppose that your harvester produces maximum 4.15 voltage and maximum 0.00004 Amp current, so subtract maximum voltage of your harvester form the maximum voltage that Ekho recorder can play which is 10.30 and divide the result by the maximum current of your harvester. (10.3-4.15)/0.00004 = 125K resistor.
+    Suppose that your harvester produces maximum 4.15 voltage and maximum 0.00004 Amp current, so subtract maximum voltage of your harvester form the maximum voltage that Ekho recorder can play which is 10.30 and divide the result by the maximum current of your harvester (found by analyzing the output of the recording tools). (10.3-4.15)/0.00004 = 125K resistor.
     Now, you need to see the minimum current can Ekho emulator produces based on the value of the sense resistor (125K). First, calculate the minimum voltage can be produced by Ekho emulator = 3.3(maximum voltage of Teensy)* 3.2 (opamp gains of Ekho recorder) /4096 (ADC value of 3.3 voltage) = 0.0025 volts. Second, divide this minimum voltage by the sense resistor= 0.0025V/125K = 0.00000002 Amp. 
     So, the minimum current can be played with using 125K sense resistor is 0.00000002 Amp. If your harvester produce less than that you need to pick another resistor value. 
 #. To start emulating, and run following command
